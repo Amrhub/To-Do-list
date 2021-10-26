@@ -14,7 +14,7 @@ This is milestone is about making to do list markup + creating tasks section dyn
 
 ## Live Demo
 
-[Live Demo](https://amrhub.github.io/To-Do-list/)
+[Live Demo](https://amrhub.github.io/To-Do-list/dist)
 
 To get a local copy up and running follow these simple example steps.
 
