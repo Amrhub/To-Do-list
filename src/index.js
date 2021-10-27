@@ -1,7 +1,9 @@
 import _ from 'lodash';
 import './style.css';
+import completeTasks from './completeTasks.js';
 
-const tasks = [
+// These are here so you could test it as CODE REVIEWER but I will deleted once I add "Add task"
+const defaultTaskValues = [
   {
     description: 'First Task',
     completed: false,
@@ -18,6 +20,7 @@ const tasks = [
     index: 3,
   },
 ];
+const tasks = JSON.parse(localStorage.getItem('tasks')) || defaultTaskValues;
 const toDoTasks = document.querySelector('.todo-tasks');
 
 const displayTasks = () => {
@@ -34,6 +37,7 @@ const displayTasks = () => {
     checkBox.setAttribute('type', 'checkbox');
     checkBox.setAttribute('title', 'Click me to mark task as completed');
     checkBox.setAttribute('name', 'checkbox');
+    checkBox.className = 'checkbox';
     description.className = 'label';
     icon.className = 'fas fa-ellipsis-v';
 
@@ -49,3 +53,4 @@ const displayTasks = () => {
 };
 
 displayTasks();
+completeTasks(tasks);
