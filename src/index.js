@@ -1,23 +1,8 @@
 import _ from 'lodash';
 import './style.css';
+import completeTasks from './completeTasks.js';
 
-const tasks = [
-  {
-    description: 'First Task',
-    completed: false,
-    index: 1,
-  },
-  {
-    description: 'Second Task',
-    completed: true,
-    index: 2,
-  },
-  {
-    description: 'Third Task',
-    completed: false,
-    index: 3,
-  },
-];
+const tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
 const toDoTasks = document.querySelector('.todo-tasks');
 
 const displayTasks = () => {
@@ -34,6 +19,7 @@ const displayTasks = () => {
     checkBox.setAttribute('type', 'checkbox');
     checkBox.setAttribute('title', 'Click me to mark task as completed');
     checkBox.setAttribute('name', 'checkbox');
+    checkBox.className = 'checkbox';
     description.className = 'label';
     icon.className = 'fas fa-ellipsis-v';
 
@@ -49,3 +35,4 @@ const displayTasks = () => {
 };
 
 displayTasks();
+completeTasks(tasks);

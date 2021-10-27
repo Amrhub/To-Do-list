@@ -1,12 +1,12 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# To Do list Structure
+# To Do list
 
-> To Do list Structure
+> To Do list interactive list and localStorage
 
 ![screenshot](./app_screenshot.png)
 
-This is milestone is about making to do list markup + creating tasks section dynamically.
+This is milestone is about making to do list bit interactive adding check functionality and storing list into local storage.
 
 ## Built With
 
