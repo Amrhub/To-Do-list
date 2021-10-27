@@ -2,7 +2,25 @@ import _ from 'lodash';
 import './style.css';
 import completeTasks from './completeTasks.js';
 
-const tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
+// These are here so you could test it as CODE REVIEWER but I will deleted once I add "Add task"
+const defaultTaskValues = [
+  {
+    description: 'First Task',
+    completed: false,
+    index: 1,
+  },
+  {
+    description: 'Second Task',
+    completed: true,
+    index: 2,
+  },
+  {
+    description: 'Third Task',
+    completed: false,
+    index: 3,
+  },
+];
+const tasks = JSON.parse(localStorage.getItem('tasks')) || defaultTaskValues;
 const toDoTasks = document.querySelector('.todo-tasks');
 
 const displayTasks = () => {
