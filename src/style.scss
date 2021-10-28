@@ -177,22 +177,22 @@ li:nth-of-type(2) {
     &:hover {
       color: rgba(0, 0, 0, 0.6);
     }
-
-    &:last-of-type {
-      z-index: 1;
-
-      &:hover {
-        cursor: pointer;
-      }
-    }
   }
 
-  &:first-of-type {
-    z-index: 2;
+  .fa-trash-alt {
+    z-index: 1;
 
     &:hover {
-      cursor: move;
+      cursor: pointer;
     }
+  }
+}
+
+.fa-ellipsis-v {
+  z-index: 2;
+
+  &:hover {
+    cursor: move;
   }
 }
 

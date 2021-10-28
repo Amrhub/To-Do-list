@@ -175,19 +175,19 @@ li:nth-of-type(2) {
   color: rgba(0, 0, 0, 0.6);
 }
 
-.task .task-icon:last-of-type {
+.task .fa-trash-alt {
   z-index: 1;
 }
 
-.task .task-icon:last-of-type:hover {
+.task .fa-trash-alt:hover {
   cursor: pointer;
 }
 
-.task:first-of-type {
+.fa-ellipsis-v {
   z-index: 2;
 }
 
-.task:first-of-type:hover {
+.fa-ellipsis-v:hover {
   cursor: move;
 }
 
