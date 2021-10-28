@@ -6,7 +6,7 @@
 
 ![screenshot](./app_screenshot.png)
 
-This is milestone is about making to do list bit interactive adding check functionality and storing list into local storage.
+This is milestone is about making to do list interactive adding and removing tasks.
 
 ## Built With
 

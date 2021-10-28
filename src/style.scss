@@ -65,7 +65,11 @@ li:nth-of-type(2) {
   }
 }
 
-li form {
+.add-task-container {
+  padding: 0 1em;
+}
+
+.add-task-form {
   width: 100%;
 
   input,
@@ -77,6 +81,9 @@ li form {
   }
 
   .new-task {
+    flex-grow: 1;
+    padding: 1em 0;
+
     &::placeholder {
       color: rgba(0, 0, 0, 0.4);
     }
@@ -98,54 +105,92 @@ li form {
 }
 
 .task {
-  .task-container {
-    gap: 0.5rem;
+  padding: 0 1em !important;
+  position: relative;
+  gap: 0.5rem;
+  flex-grow: 1;
 
-    input[type='checkbox'] {
-      width: 15px;
-      height: 15px;
-      border: 2px solid #c1c1c3;
-      border-radius: $border-radius;
-      position: relative;
-      appearance: none;
+  input[type='checkbox'] {
+    margin: 1em 0;
+    width: 15px;
+    height: 15px;
+    border: 2px solid #c1c1c3;
+    border-radius: $border-radius;
+    position: relative;
+    appearance: none;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &:focus,
+    &:active {
+      outline: none;
+      border-color: #8b8b8b;
+    }
+
+    &:checked {
+      border: 0;
+
+      &::after {
+        font-family: 'Font Awesome 6 Free', sans-serif;
+        font-weight: 600;
+        content: '\f00c';
+        font-size: 15px;
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        color: rgba(46, 138, 230, 0.7);
+      }
+    }
+  }
+
+  .edit-task {
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $primary-color;
+    flex-grow: 1;
+    align-self: stretch;
+
+    &:hover,
+    &:focus {
+      outline: none;
+    }
+  }
+
+  input[type='checkbox']:checked + label + .edit-task {
+    text-decoration: line-through;
+    color: $icon-color;
+  }
+
+  .task-icon {
+    color: $icon-color;
+    position: absolute;
+    right: 1em;
+    width: 25px;
+    height: 25px;
+    background-color: inherit;
+
+    &:hover {
+      color: rgba(0, 0, 0, 0.6);
+    }
+
+    &:last-of-type {
+      z-index: 1;
 
       &:hover {
         cursor: pointer;
       }
-
-      &:checked {
-        border: 0;
-
-        &::after {
-          font-family: 'Font Awesome 6 Free', sans-serif;
-          font-weight: 600;
-          content: '\f00c';
-          font-size: 15px;
-          top: 50%;
-          left: 50%;
-          position: absolute;
-          transform: translate(-50%, -50%);
-          color: rgba(46, 138, 230, 0.7);
-        }
-      }
-    }
-
-    label {
-      color: $primary-color;
-    }
-
-    input[type='checkbox']:checked + label {
-      text-decoration: line-through;
-      color: $icon-color;
     }
   }
 
-  > *:last-child {
-    color: $icon-color;
-    padding: 0 0.4rem;
+  &:first-of-type {
+    z-index: 2;
 
     &:hover {
-      color: rgba(0, 0, 0, 0.6);
       cursor: move;
     }
   }
