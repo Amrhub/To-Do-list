@@ -60,23 +60,32 @@ li:nth-of-type(2) {
   color: rgba(0, 0, 0, 0.6);
 }
 
-li form {
+.add-task-container {
+  padding: 0 1em;
+}
+
+.add-task-form {
   width: 100%;
 }
 
-li form input,
-li form input:hover,
-li form input:focus {
+.add-task-form input,
+.add-task-form input:hover,
+.add-task-form input:focus {
   border: 0;
   outline: 0;
   color: #545862;
 }
 
-li form .new-task::placeholder {
+.add-task-form .new-task {
+  flex-grow: 1;
+  padding: 1em 0;
+}
+
+.add-task-form .new-task::placeholder {
   color: rgba(0, 0, 0, 0.4);
 }
 
-li form .input-return {
+.add-task-form .input-return {
   background-image: url(https://web.archive.org/web/20180728085226im_/http://www.getminimalist.com/assets/enter-b06ec7fb441bc0e40d61ba975a0291ad.png);
   background-repeat: no-repeat;
   background-position: center center;
@@ -86,15 +95,19 @@ li form .input-return {
   height: 20px;
 }
 
-li form .input-return:hover {
+.add-task-form .input-return:hover {
   cursor: pointer;
 }
 
-.task .task-container {
+.task {
+  padding: 0 1em !important;
+  position: relative;
   gap: 0.5rem;
+  flex-grow: 1;
 }
 
-.task .task-container input[type='checkbox'] {
+.task input[type='checkbox'] {
+  margin: 1em 0;
   width: 15px;
   height: 15px;
   border: 2px solid #c1c1c3;
@@ -103,15 +116,21 @@ li form .input-return:hover {
   appearance: none;
 }
 
-.task .task-container input[type='checkbox']:hover {
+.task input[type='checkbox']:hover {
   cursor: pointer;
 }
 
-.task .task-container input[type='checkbox']:checked {
+.task input[type='checkbox']:focus,
+.task input[type='checkbox']:active {
+  outline: none;
+  border-color: #8b8b8b;
+}
+
+.task input[type='checkbox']:checked {
   border: 0;
 }
 
-.task .task-container input[type='checkbox']:checked::after {
+.task input[type='checkbox']:checked::after {
   font-family: 'Font Awesome 6 Free', sans-serif;
   font-weight: 600;
   content: '\f00c';
@@ -123,22 +142,52 @@ li form .input-return:hover {
   color: rgba(46, 138, 230, 0.7);
 }
 
-.task .task-container label {
+.task .edit-task {
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #545862;
+  flex-grow: 1;
+  align-self: stretch;
 }
 
-.task .task-container input[type='checkbox']:checked + label {
+.task .edit-task:hover,
+.task .edit-task:focus {
+  outline: none;
+}
+
+.task input[type='checkbox']:checked + label + .edit-task {
   text-decoration: line-through;
   color: rgba(0, 0, 0, 0.3);
 }
 
-.task > *:last-child {
+.task .task-icon {
   color: rgba(0, 0, 0, 0.3);
-  padding: 0 0.4rem;
+  position: absolute;
+  right: 1em;
+  width: 25px;
+  height: 25px;
+  background-color: inherit;
 }
 
-.task > *:last-child:hover {
+.task .task-icon:hover {
   color: rgba(0, 0, 0, 0.6);
+}
+
+.task .fa-trash-alt {
+  z-index: 1;
+}
+
+.task .fa-trash-alt:hover {
+  cursor: pointer;
+}
+
+.fa-ellipsis-v {
+  z-index: 2;
+}
+
+.fa-ellipsis-v:hover {
   cursor: move;
 }
 

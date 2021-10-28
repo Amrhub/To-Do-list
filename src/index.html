@@ -11,8 +11,9 @@
         <div class="todo-list-title d-flex-sb">To Do List <i class="fas fa-sync"></i></div>
         <ul class="add-task">
             <li class="add-task-container d-flex-sb">
-                <form class="d-flex-sb">
-                    <input type="text" class="new-task" placeholder="Add to your list...">
+                <form class="d-flex-sb add-task-form">
+                    <label for="task-description" hidden>task description</label>
+                    <input type="text" class="new-task" name="task-description" id="task-description" placeholder="Add to your list...">
                     <input type="submit" value title="Click on this or enter to submit" class="input-return">
                 </form>
             </li>
