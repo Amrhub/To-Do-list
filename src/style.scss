@@ -47,6 +47,10 @@ li,
   background-color: white;
 }
 
+.todo-list-title .fa-sync {
+  font-size: 14px;
+}
+
 li:nth-of-type(2) {
   padding: 1em 1em;
 }
@@ -187,7 +191,6 @@ li:nth-of-type(2) {
     }
   }
 }
-
 .fa-ellipsis-v {
   z-index: 2;
 
@@ -207,5 +210,15 @@ li:nth-of-type(2) {
     cursor: pointer;
     text-decoration: underline;
     font-weight: normal;
+  }
+}
+
+@keyframes loader {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
   }
 }
