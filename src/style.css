@@ -42,6 +42,10 @@ li,
   background-color: white;
 }
 
+.todo-list-title .fa-sync {
+  font-size: 14px;
+}
+
 li:nth-of-type(2) {
   padding: 1em 1em;
 }
@@ -120,8 +124,7 @@ li:nth-of-type(2) {
   cursor: pointer;
 }
 
-.task input[type='checkbox']:focus,
-.task input[type='checkbox']:active {
+.task input[type='checkbox']:focus, .task input[type='checkbox']:active {
   outline: none;
   border-color: #8b8b8b;
 }
@@ -152,8 +155,7 @@ li:nth-of-type(2) {
   align-self: stretch;
 }
 
-.task .edit-task:hover,
-.task .edit-task:focus {
+.task .edit-task:hover, .task .edit-task:focus {
   outline: none;
 }
 
@@ -204,3 +206,13 @@ li:nth-of-type(2) {
   text-decoration: underline;
   font-weight: normal;
 }
+
+@keyframes loader {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/*# sourceMappingURL=style.css.map */

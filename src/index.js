@@ -1,17 +1,45 @@
+/* eslint-disable import/no-cycle */
 import _ from 'lodash';
 import './style.css';
 import completeTasks from './completeTasks.js';
-// eslint-disable-next-line import/no-cycle
-import crudFunctionality from './crudFunctionality.js';
+import crudFunctionality, { setEventListeners } from './crudFunctionality.js';
+import additionalFeatures from './additionalFeatures.js';
 
-const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 const toDoTasks = document.querySelector('.todo-tasks');
-
+const instructions = [
+  {
+    description: 'Double-tap to edit (enter to save changes)',
+    completed: false,
+    test: true,
+    index: 1,
+  },
+  {
+    description: 'Double-tap then tap trash can icon to delete a task',
+    completed: false,
+    test: true,
+    index: 2,
+  },
+  {
+    description: "Drag 'n drop to reorder your list",
+    completed: false,
+    test: true,
+    index: 3,
+  },
+  {
+    description: 'Manage all your lists in one place',
+    completed: false,
+    test: true,
+    index: 4,
+  },
+  {
+    description: 'Resync to clear out the instructions',
+    completed: false,
+    test: true,
+    index: 5,
+  },
+];
 export default function displayTasks(newTasks = tasks) {
-  if (newTasks.length === 0) {
-    toDoTasks.innerHTML = '';
-    return;
-  }
   toDoTasks.innerHTML = '';
   _.forEach(newTasks, (value, index) => {
     value.index = index + 1;
@@ -23,6 +51,7 @@ export default function displayTasks(newTasks = tasks) {
     const icon = document.createElement('i');
     const editIcon = document.createElement('i');
 
+    if (value.test) li.id = 'test';
     li.className = 'task d-flex-sb';
     checkBox.setAttribute('type', 'checkbox');
     checkBox.setAttribute('title', 'Click me to mark task as completed');
@@ -60,10 +89,13 @@ export default function displayTasks(newTasks = tasks) {
     toDoTasks.appendChild(li);
   });
   localStorage.setItem('tasks', JSON.stringify(newTasks));
-  crudFunctionality(tasks);
-  completeTasks(tasks);
+  tasks = newTasks;
+  setEventListeners();
+  completeTasks();
+  additionalFeatures(tasks);
 }
 
-displayTasks();
-completeTasks(tasks);
-crudFunctionality(tasks);
+if (tasks.length === undefined || tasks.length === 0) {
+  displayTasks(instructions);
+} else displayTasks(tasks);
+crudFunctionality();

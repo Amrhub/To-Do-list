@@ -1,17 +1,24 @@
+/* eslint-disable no-var */
 import _ from 'lodash';
 // eslint-disable-next-line import/no-cycle
 import displayTasks from './index.js';
-import completeTasks from './completeTasks.js';
 
-export default function crudFunctionality(tasks) {
+var updateTask = () => {};
+var removeTask = () => {};
+var removeCheckedTasks = () => {};
+var tasks = JSON.parse(localStorage.getItem('tasks'));
+
+export default function crudFunctionality() {
   const addTaskForm = document.querySelector('.add-task-form');
-  const clearCompleted = document.querySelector('.clear-completed');
+  tasks = JSON.parse(localStorage.getItem('tasks'));
 
   const updateLocalStorage = (updatedTasks) => {
     localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+    displayTasks(updatedTasks);
   };
 
   const addTask = (e) => {
+    e.preventDefault();
     const taskDescription = e.target.querySelector('.new-task').value;
     if (taskDescription.length) {
       const newTaskObject = {
@@ -21,25 +28,24 @@ export default function crudFunctionality(tasks) {
       };
       tasks = _.concat(tasks, newTaskObject);
       updateLocalStorage(tasks);
-      completeTasks(tasks);
+      e.target.querySelector('.new-task').value = '';
     }
   };
 
-  const updateTask = (e, index) => {
+  updateTask = (e, index) => {
     tasks[index].description = e.target.value;
     updateLocalStorage(tasks);
   };
-
-  const removeTask = (index) => {
+  removeTask = (index) => {
     const newTasks = tasks.filter((t) => t.index !== parseInt(index, 10));
+    tasks = newTasks;
     updateLocalStorage(newTasks);
-    window.location.reload();
+    displayTasks(newTasks);
   };
 
-  const removeCheckedTasks = () => {
+  removeCheckedTasks = (tasks) => {
     tasks = _.filter(tasks, (task) => !task.completed);
     updateLocalStorage(tasks);
-    displayTasks(tasks);
   };
 
   // Set event listeners
@@ -47,25 +53,27 @@ export default function crudFunctionality(tasks) {
   addTaskForm.onsubmit = (e) => {
     addTask(e);
   };
+}
 
-  clearCompleted.addEventListener('click', () => {
-    removeCheckedTasks();
+export const setEventListeners = () => {
+  _.forEach(document.querySelector('.todo-tasks').children, (task, index) => {
+    const editTaskDescription = task.querySelector('.edit-task');
+    const deleteIcon = task.querySelector('.task-icon:last-of-type');
+    editTaskDescription.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        updateTask(e, index);
+      }
+    });
+    deleteIcon.addEventListener('click', () => {
+      removeTask(deleteIcon.id);
+    });
   });
 
-  const setEventListeners = () => {
-    _.forEach(document.querySelector('.todo-tasks').children, (task, index) => {
-      const editTaskDescription = task.querySelector('.edit-task');
-      const deleteIcon = task.querySelector('.task-icon:last-of-type');
-      editTaskDescription.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-          updateTask(e, index);
-        }
-      });
-      deleteIcon.addEventListener('click', () => {
-        removeTask(deleteIcon.id);
-      });
-    });
-  };
+  const clearCompleted = document.querySelector('.clear-completed');
+  clearCompleted.addEventListener('click', () => {
+    tasks = JSON.parse(localStorage.getItem('tasks'));
+    removeCheckedTasks(tasks);
+  });
+};
 
-  setEventListeners();
-}
+setEventListeners();
