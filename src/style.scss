@@ -121,6 +121,7 @@ li:nth-of-type(2) {
     border: 2px solid #c1c1c3;
     border-radius: $border-radius;
     position: relative;
+    -webkit-appearance: none;
     appearance: none;
 
     &:hover {
